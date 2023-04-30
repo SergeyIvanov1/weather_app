@@ -1,0 +1,30 @@
+weather:
+  url: http://api.weatherapi.com/v1/current.json
+  apiKey: c8d70ac73e2f4639b04132653231203
+  aqi: no
+
+coordinate:
+  longitude: 50.189683
+  latitude: 53.222579
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/homework
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+management:
+  endpoints.web.exposure.include: 'prometheus, health'
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
