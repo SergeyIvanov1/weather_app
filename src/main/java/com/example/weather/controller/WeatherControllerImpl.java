@@ -52,4 +52,9 @@ public class WeatherControllerImpl {
             throw new RuntimeException(e);
         }
     }
+
+    @RequestMapping("/test")
+    public String showTest(){
+        return "test";
+    }
 }

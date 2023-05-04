@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  app:
+    image: 'weather-app-docker-spring-postgres:latest'
+    build:
+      context: .
+#      context: /src/main/docker
+    ports:
+      - "8086:8080"
+    container_name: app
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5434/homework_db
+      - SPRING_DATASOURCE_USERNAME=homework
+      - SPRING_DATASOURCE_PASSWORD=homework
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=none
+
+  db:
+    image: 'postgres:13'
+    ports:
+      - "5434:5432"
+    volumes:
+      - ../resources/db/init_db.sql:/docker-entrypoint-initdb.d/init.sql
+    container_name: db
+    environment:
+      - POSTGRES_USER=homework
+      - POSTGRES_PASSWORD=homework
+      - POSTGRES_DB=homework_db

@@ -1,0 +1,21 @@
+apiVersion : v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    env : prod
+    app : main
+    tier : frontend
+    owner: SergeyIvanov
+spec:
+  containers:
+    - name: container-weather-app
+      image: nginx:latest
+#      image: ivanovsergey/my-repo:1.0.4
+      ports:
+        - containerPort: 80
+
+    - name: second-weather-container
+      image: tomcat:8.5.38
+      ports:
+        - containerPort: 8080
